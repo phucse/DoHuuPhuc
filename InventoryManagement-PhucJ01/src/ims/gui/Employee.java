@@ -7,7 +7,13 @@ package ims.gui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
+import ims.bll.ComboboxBLL;
+import ims.objects.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author NAT
@@ -17,6 +23,9 @@ public class Employee extends javax.swing.JFrame {
     /**
      * Creates new form Employee
      */
+    
+    ComboboxBLL cbll = new ComboboxBLL();
+    
     public Employee() {
         initComponents();
         stateButton(true);
@@ -111,13 +120,13 @@ public class Employee extends javax.swing.JFrame {
         cbxNoiCapCM = new javax.swing.JComboBox<>();
         txtDD = new javax.swing.JTextField();
         txtNgayVaoDang = new javax.swing.JTextField();
-        txtNoiCapPassPort = new javax.swing.JTextField();
-        cbxQuocTich = new javax.swing.JComboBox<>();
         txtNgayCapMST = new javax.swing.JTextField();
         btnChonTep = new javax.swing.JButton();
         labelLink = new javax.swing.JLabel();
         cbxNganHang = new javax.swing.JComboBox<>();
         img = new javax.swing.JLabel();
+        txtQuocTich = new javax.swing.JTextField();
+        cbxMaNoiCapPass = new javax.swing.JComboBox<>();
         panelBangCap = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -167,6 +176,11 @@ public class Employee extends javax.swing.JFrame {
         txtLuongKD = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         btNew.setText("Thêm");
         btNew.setPreferredSize(new java.awt.Dimension(75, 23));
@@ -192,6 +206,11 @@ public class Employee extends javax.swing.JFrame {
 
         btClose.setText("Thoát");
         btClose.setPreferredSize(new java.awt.Dimension(75, 23));
+        btClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCloseActionPerformed(evt);
+            }
+        });
 
         btSave.setText("Ghi");
         btSave.setPreferredSize(new java.awt.Dimension(75, 23));
@@ -283,13 +302,15 @@ public class Employee extends javax.swing.JFrame {
 
         cbxNoiCapCM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
 
-        cbxQuocTich.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
-
         btnChonTep.setText("Chọn tệp");
 
         labelLink.setText("Không có tệp được chọn");
 
         cbxNganHang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
+
+        txtQuocTich.setText("Việt Nam");
+
+        cbxMaNoiCapPass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
 
         javax.swing.GroupLayout panelBasicInfoLayout = new javax.swing.GroupLayout(panelBasicInfo);
         panelBasicInfo.setLayout(panelBasicInfoLayout);
@@ -384,17 +405,19 @@ public class Employee extends javax.swing.JFrame {
                             .addComponent(jLabel29))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelBasicInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbxNganHang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panelBasicInfoLayout.createSequentialGroup()
-                                .addGroup(panelBasicInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNoiCapPassPort)
-                                    .addComponent(txtDTTT)
-                                    .addComponent(txtHoTen)
-                                    .addComponent(cbxNoiSinh, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cbxNoiCapCM, 0, 130, Short.MAX_VALUE)
-                                    .addComponent(txtDD)
-                                    .addComponent(txtNgayVaoDang)
-                                    .addComponent(cbxQuocTich, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtNgayCapMST))
+                                .addGroup(panelBasicInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelBasicInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtDTTT)
+                                        .addComponent(txtHoTen)
+                                        .addComponent(cbxNoiSinh, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cbxNoiCapCM, 0, 130, Short.MAX_VALUE)
+                                        .addComponent(txtDD)
+                                        .addComponent(txtNgayVaoDang)
+                                        .addComponent(txtNgayCapMST)
+                                        .addComponent(txtQuocTich))
+                                    .addComponent(cbxMaNoiCapPass, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(panelBasicInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panelBasicInfoLayout.createSequentialGroup()
@@ -402,8 +425,7 @@ public class Employee extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(labelLink)
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(img, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(cbxNganHang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(img, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addComponent(jLabel27))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -464,7 +486,7 @@ public class Employee extends javax.swing.JFrame {
                             .addComponent(jLabel16)
                             .addComponent(cbxTonGiao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel26)
-                            .addComponent(cbxQuocTich, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtQuocTich, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(img, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelBasicInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -473,9 +495,9 @@ public class Employee extends javax.swing.JFrame {
                     .addComponent(jLabel17)
                     .addComponent(txtNgayCapPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel27)
-                    .addComponent(txtNoiCapPassPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnChonTep)
-                    .addComponent(labelLink))
+                    .addComponent(labelLink)
+                    .addComponent(cbxMaNoiCapPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelBasicInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -868,6 +890,125 @@ public class Employee extends javax.swing.JFrame {
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
          stateButton(true);// TODO add your handling code here:
     }//GEN-LAST:event_btCancelActionPerformed
+    
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try {
+            ArrayList<Province>proList=cbll.readProvince();
+            ArrayList<Ethnic>ethnicList=cbll.readEthnic();
+            ArrayList<Religion>religionList=cbll.readReligion();
+            ArrayList<Bank>bankList=cbll.readBank();
+            ArrayList<TypeEmp>typeEmpList=cbll.readTypeEmp();
+            ArrayList<Degree>degreeList = cbll.readDegree();
+            ArrayList<Certificate>certificateList = cbll.readCertificate();
+            ArrayList<UnitWork>unitWorkList = cbll.readUnitWork();
+            ArrayList<Room>roomList = cbll.readRoom();
+            ArrayList<Department>departmentList = cbll.readDepartment();
+            ArrayList<Title>titleList = cbll.readTitle();    
+            ArrayList<Position>positionList = cbll.readPosition();            
+            
+            Province province = new Province();
+            Ethnic ethnic = new Ethnic();
+            Religion religion = new Religion();
+            Bank bank = new Bank();
+            TypeEmp typeEmp = new TypeEmp();
+            Degree degree =new Degree();
+            Certificate certificate = new Certificate();
+            UnitWork unitWork = new UnitWork();
+            Room room = new Room();
+            Department department = new Department();
+            Title title = new Title();
+            Position position = new Position();
+            
+            for(int i=0;i<proList.size();i++)
+            {
+                province=proList.get(i);                                
+                this.cbxNoiSinh.addItem(province.getProvinceName());
+                this.cbxNoiCapCM.addItem(province.getProvinceName());
+                this.cbxMaNoiCapPass.addItem(province.getProvinceName());
+                this.cbxDDLV.addItem(province.getProvinceName());
+            }
+            
+            for(int i=0;i<ethnicList.size();i++)
+            {
+                ethnic=ethnicList.get(i);                                
+                this.cbxDanToc.addItem(ethnic.getEthnicName());
+            }
+            
+            for(int i=0;i<religionList.size();i++)
+            {
+                religion=religionList.get(i);                                
+                this.cbxTonGiao.addItem(religion.getReligionName());
+            }
+            
+            for(int i=0;i<bankList.size();i++)
+            {
+                bank=bankList.get(i);
+                this.cbxNganHang.addItem(bank.getBankName());
+            }
+            
+            for(int i=0;i<typeEmpList.size();i++)
+            {
+                typeEmp=typeEmpList.get(i);
+                this.cbxLoaiNV.addItem(typeEmp.getTypeName());
+            }
+            
+            for(int i=0;i<degreeList.size();i++)
+            {                
+                degree=degreeList.get(i);
+                this.cbxTrinhDo.addItem(degree.getDegreeName());
+            }
+            
+            for(int i=0;i<certificateList.size();i++)
+            {
+                certificate=certificateList.get(i);
+                this.cbxBangCap.addItem(certificate.getCertificateName());
+            }
+            
+            for(int i=0;i<unitWorkList.size();i++)
+            {
+                unitWork=unitWorkList.get(i);
+                this.cbxDonVi.addItem(unitWork.getUnitName());
+            }
+            
+            for(int i=0;i<roomList.size();i++)
+            {
+                room=roomList.get(i);
+                this.cbxPhongBan.addItem(room.getRoomName());
+            }
+            
+            for(int i=0;i<departmentList.size();i++)
+            {
+                department=departmentList.get(i);
+                this.cbxBoPhan.addItem(department.getDepartmentName());
+            }
+            
+            for(int i=0;i<titleList.size();i++)
+            {
+                title=titleList.get(i);
+                this.cbxChucDanh.addItem(title.getTitleName());
+            }
+            
+            
+            for(int i=0;i<positionList.size();i++)
+            {
+                position=positionList.get(i);
+                this.cbxChucVu.addItem(position.getPositionName());
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+        }catch (Exception ex){
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE); 
+        }    
+                
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCloseActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btCloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -922,12 +1063,12 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxDonVi;
     private javax.swing.JComboBox<String> cbxHonNhan;
     private javax.swing.JComboBox<String> cbxLoaiNV;
+    private javax.swing.JComboBox<String> cbxMaNoiCapPass;
     private javax.swing.JComboBox<String> cbxNganHang;
     private javax.swing.JComboBox<String> cbxNoiCapCM;
     private javax.swing.JComboBox<String> cbxNoiSinh;
     private javax.swing.JComboBox<String> cbxPhai;
     private javax.swing.JComboBox<String> cbxPhongBan;
-    private javax.swing.JComboBox<String> cbxQuocTich;
     private javax.swing.JComboBox<String> cbxTonGiao;
     private javax.swing.JComboBox<String> cbxTrinhDo;
     private javax.swing.JLabel img;
@@ -1017,8 +1158,8 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JTextField txtNgayVaoCT;
     private javax.swing.JTextField txtNgayVaoDang;
     private javax.swing.JTextField txtNgayVaoDoan;
-    private javax.swing.JTextField txtNoiCapPassPort;
     private javax.swing.JTextField txtPassport;
+    private javax.swing.JTextField txtQuocTich;
     private javax.swing.JTextField txtSoTK;
     private javax.swing.JTextField txtSoThe;
     // End of variables declaration//GEN-END:variables

@@ -30,7 +30,7 @@ public class EmployeeInfo {
     private Date ngayVaoDang;
     private int maDToc;
     private int maTGiao;
-    private int maQTich;
+    private int quocTich;
     private int passport;
     private Date ngayCapCass;
     private int maNoiCapPass;
@@ -63,7 +63,7 @@ public class EmployeeInfo {
 
     public EmployeeInfo() {}
 
-    public EmployeeInfo(String maNV, String soThe, String hoTen, boolean phai, int namSinh, int maNoiSinh, String cmnd, Date ngayCapCMND, int maNoiCapCMND, String dcThuongTru, int dtThuongTru, String dcTamTru, int dtdd, String email, Date ngayVaoDoan, Date ngayVaoDang, int maDToc, int maTGiao, int maQTich, int passport, Date ngayCapCass, int maNoiCapPass, boolean honNhan, int maSoThue, Date ngayCapMST, int soTK, String maTK, int maNH, int maTDo, int maBC, String hocHam, String chuyenMon, int knlvNam, int knlvThang, int maLNV, Date ngayVao, Date ngayHet, Date ngayChinhThuc, int maDvi, int maPBan, int maBphan, int maCDanh, int maCVu, int maNoiLam, float luongTV, float luongCB, float luongKD, String hinh) {
+    public EmployeeInfo(String maNV, String soThe, String hoTen, boolean phai, int namSinh, int maNoiSinh, String cmnd, Date ngayCapCMND, int maNoiCapCMND, String dcThuongTru, int dtThuongTru, String dcTamTru, int dtdd, String email, Date ngayVaoDoan, Date ngayVaoDang, int maDToc, int maTGiao, int quocTich, int passport, Date ngayCapCass, int maNoiCapPass, boolean honNhan, int maSoThue, Date ngayCapMST, int soTK, String maTK, int maNH, int maTDo, int maBC, String hocHam, String chuyenMon, int knlvNam, int knlvThang, int maLNV, Date ngayVao, Date ngayHet, Date ngayChinhThuc, int maDvi, int maPBan, int maBphan, int maCDanh, int maCVu, int maNoiLam, float luongTV, float luongCB, float luongKD, String hinh) {
         this.maNV = maNV;
         this.soThe = soThe;
         this.hoTen = hoTen;
@@ -82,7 +82,7 @@ public class EmployeeInfo {
         this.ngayVaoDang = ngayVaoDang;
         this.maDToc = maDToc;
         this.maTGiao = maTGiao;
-        this.maQTich = maQTich;
+        this.quocTich = quocTich;
         this.passport = passport;
         this.ngayCapCass = ngayCapCass;
         this.maNoiCapPass = maNoiCapPass;
@@ -258,12 +258,12 @@ public class EmployeeInfo {
         this.maTGiao = maTGiao;
     }
 
-    public int getMaQTich() {
-        return maQTich;
+    public int getQuocTich() {
+        return quocTich;
     }
 
-    public void setMaQTich(int maQTich) {
-        this.maQTich = maQTich;
+    public void setQuocTich(int quocTich) {
+        this.quocTich = quocTich;
     }
 
     public int getPassport() {
@@ -497,6 +497,8 @@ public class EmployeeInfo {
     public void setHinh(String hinh) {
         this.hinh = hinh;
     }
+
+    
     
     
 }

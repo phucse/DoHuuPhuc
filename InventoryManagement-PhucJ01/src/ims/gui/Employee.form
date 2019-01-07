@@ -8,6 +8,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -108,6 +111,9 @@
           <Dimension value="[75, 23]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCloseActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btSave">
       <Properties>
@@ -290,17 +296,20 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtNoiCapPassPort" max="32767" attributes="0"/>
-                                          <Component id="txtDTTT" max="32767" attributes="0"/>
-                                          <Component id="txtHoTen" max="32767" attributes="0"/>
-                                          <Component id="cbxNoiSinh" max="32767" attributes="0"/>
-                                          <Component id="cbxNoiCapCM" pref="130" max="32767" attributes="0"/>
-                                          <Component id="txtDD" max="32767" attributes="0"/>
-                                          <Component id="txtNgayVaoDang" max="32767" attributes="0"/>
-                                          <Component id="cbxQuocTich" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtNgayCapMST" max="32767" attributes="0"/>
+                                  <Component id="cbxNganHang" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="txtDTTT" max="32767" attributes="0"/>
+                                              <Component id="txtHoTen" max="32767" attributes="0"/>
+                                              <Component id="cbxNoiSinh" max="32767" attributes="0"/>
+                                              <Component id="cbxNoiCapCM" pref="130" max="32767" attributes="0"/>
+                                              <Component id="txtDD" max="32767" attributes="0"/>
+                                              <Component id="txtNgayVaoDang" max="32767" attributes="0"/>
+                                              <Component id="txtNgayCapMST" max="32767" attributes="0"/>
+                                              <Component id="txtQuocTich" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Component id="cbxMaNoiCapPass" min="-2" pref="130" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -313,7 +322,6 @@
                                           <Component id="img" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="cbxNganHang" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
@@ -385,7 +393,7 @@
                                   <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cbxTonGiao" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cbxQuocTich" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtQuocTich" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="img" max="32767" attributes="0"/>
@@ -397,9 +405,9 @@
                           <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtNgayCapPass" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNoiCapPassPort" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnChonTep" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="labelLink" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbxMaNoiCapPass" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -686,20 +694,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtNgayVaoDang">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtNoiCapPassPort">
-            </Component>
-            <Component class="javax.swing.JComboBox" name="cbxQuocTich">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="1">
-                    <StringItem index="0" value="---Ch&#x1ecd;n---"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
             <Component class="javax.swing.JTextField" name="txtNgayCapMST">
             </Component>
             <Component class="javax.swing.JButton" name="btnChonTep">
@@ -725,6 +719,23 @@
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="img">
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtQuocTich">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Vi&#x1ec7;t Nam"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cbxMaNoiCapPass">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="1">
+                    <StringItem index="0" value="---Ch&#x1ecd;n---"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
