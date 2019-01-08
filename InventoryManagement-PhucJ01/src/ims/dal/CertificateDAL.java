@@ -5,7 +5,7 @@
  */
 package ims.dal;
 
-import ims.objects.Certificate;
+import ims.dto.Certificate;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

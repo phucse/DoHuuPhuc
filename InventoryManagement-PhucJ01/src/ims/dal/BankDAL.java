@@ -5,8 +5,8 @@
  */
 package ims.dal;
 
-import ims.objects.Bank;
-import ims.objects.Bank;
+import ims.dto.Bank;
+import ims.dto.Bank;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +25,7 @@ public class BankDAL extends Database{
         
             conn = getConnection();            
             stm = conn.createStatement();
-            String sql = "Select MaNH,TenNH FROM nganhang";
+            String sql = "SELECT MaNH, TenNH FROM nganhang";
             ResultSet rs = stm.executeQuery(sql);
             while(rs.next()){
                 Bank bank = new Bank();

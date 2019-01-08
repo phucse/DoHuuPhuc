@@ -5,7 +5,7 @@
  */
 package ims.dal;
 
-import ims.objects.Province;
+import ims.dto.Province;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

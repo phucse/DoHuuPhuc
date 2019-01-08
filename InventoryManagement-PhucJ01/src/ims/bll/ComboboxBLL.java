@@ -4,8 +4,19 @@
  * and open the template in the editor.
  */
 package ims.bll;
+import ims.dto.Religion;
+import ims.dto.Room;
+import ims.dto.Certificate;
+import ims.dto.Ethnic;
+import ims.dto.Degree;
+import ims.dto.Title;
+import ims.dto.UnitWork;
+import ims.dto.Position;
+import ims.dto.Province;
+import ims.dto.Bank;
+import ims.dto.Department;
+import ims.dto.TypeEmp;
 import  ims.dal.*;
-import ims.objects.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 /**

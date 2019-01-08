@@ -5,7 +5,7 @@
  */
 package ims.dal;
 
-import ims.objects.Religion;
+import ims.dto.Religion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

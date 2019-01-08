@@ -5,7 +5,7 @@
  */
 package ims.dal;
 
-import ims.objects.Department;
+import ims.dto.Department;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -5,15 +5,18 @@
  */
 package ims.gui;
 
+import ims.dto.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import ims.bll.ComboboxBLL;
-import ims.objects.*;
+import ims.bll.*;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author NAT
@@ -23,23 +26,52 @@ public class Employee extends javax.swing.JFrame {
     /**
      * Creates new form Employee
      */
-    
-    ComboboxBLL cbll = new ComboboxBLL();
-    
+    ArrayList<Province> proList;
+    ArrayList<Ethnic> ethnicList;
+    ArrayList<Religion> religionList;
+    ArrayList<Bank> bankList;
+    ArrayList<TypeEmp> typeEmpList;
+    ArrayList<Degree> degreeList;
+    ArrayList<Certificate> certificateList;
+    ArrayList<UnitWork> unitWorkList;
+    ArrayList<Room> roomList;
+    ArrayList<Department> departmentList;
+    ArrayList<Title> titleList;
+    ArrayList<Position> positionList;
+
+    Province province;
+    Ethnic ethnic;
+    Religion religion;
+    Bank bank;
+    TypeEmp typeEmp;
+    Degree degree;
+    Certificate certificate;
+    UnitWork unitWork;
+    Room room;
+    Department department;
+    Title title;
+    Position position;
+
+    private ComboboxBLL cbll = new ComboboxBLL();
+    private EmployeeInfo employeeInfo;
+    private EmployeeBLL ebll = new EmployeeBLL();
+
     public Employee() {
         initComponents();
         stateButton(true);
-         setInfoDialog();
+        setInfoDialog();
     }
-    public  void setInfoDialog() {
+
+    public void setInfoDialog() {
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - getHeight()) / 2);
-        setLocation(x, y);        
+        setLocation(x, y);
         setResizable(false);
     }
-    public void stateButton(boolean value){
-        
+
+    public void stateButton(boolean value) {
+
         btNew.setVisible(value);
         btEdit.setVisible(value);
         btDelete.setVisible(value);
@@ -47,8 +79,150 @@ public class Employee extends javax.swing.JFrame {
         btClose.setVisible(value);
         btSave.setVisible(!value);
         btCancel.setVisible(!value);
-        
     }
+
+    public EmployeeInfo setEmployee() {
+        //Get ID of ComboBoxes
+        Province maNS, maNCCM, maNCP, maDDLV;
+        Ethnic dT;
+        Religion tG;
+        Bank nH;
+        TypeEmp lNV;
+        Degree tD;
+        Certificate bC;
+        UnitWork dV;
+        Room pB;
+        Department bP;
+        Title cD;
+        Position cV;
+
+        maNS = (Province) cbxNoiSinh.getSelectedItem();
+        int maNoiSinh = maNS.getProvinceID();
+        maNCP = (Province) cbxMaNoiCapPass.getSelectedItem();
+        int maNoiCapPass = maNCP.getProvinceID();
+        maNCCM = (Province) cbxNoiCapCM.getSelectedItem();
+        int maNoiCapCM = maNCCM.getProvinceID();
+        maDDLV = (Province) cbxDDLV.getSelectedItem();
+        int maNoiLam = maDDLV.getProvinceID();
+        dT = (Ethnic) cbxDanToc.getSelectedItem();
+        int maDantoc = dT.getEthnicID();
+        tG = (Religion) cbxTonGiao.getSelectedItem();
+        int maTonGiao = tG.getReligionID();
+        nH = (Bank) cbxNganHang.getSelectedItem();
+        int maNganHang = nH.getBankID();
+        lNV = (TypeEmp) cbxLoaiNV.getSelectedItem();
+        int maLoaiNV = lNV.getTypeID();
+        tD = (Degree) cbxTrinhDo.getSelectedItem();
+        int maTrinhDO = tD.getDegreeID();
+        bC = (Certificate) cbxBangCap.getSelectedItem();
+        int maBangCap = bC.getCertificateID();
+        dV = (UnitWork) cbxDonVi.getSelectedItem();
+        int maDonVi = dV.getUnitID();
+        pB = (Room) cbxPhongBan.getSelectedItem();
+        int maPhongBan = pB.getRoomID();
+        bP = (Department) cbxBoPhan.getSelectedItem();
+        int maBoPhan = bP.getDepartmentID();
+        cD = (Title) cbxChucDanh.getSelectedItem();
+        int maChucDanh = cD.getTitleID();
+        cV = (Position) cbxChucVu.getSelectedItem();
+        int maChucvu = cV.getPositionID();
+
+        //Get Text
+        String maNV = txtMaNV.getText();
+        String soThe = txtSoThe.getText();
+        String hoTen = txtHoTen.getText();
+        String phai = cbxPhai.getSelectedItem().toString();
+        int namSinh = Integer.valueOf(txtNamSinh.getText());
+        String cmnd = txtCMND.getText();
+        Date ngayCapCMND = Date.valueOf(txtNgayCapCMND.getText());
+        String dcThuongTru = txtDCThuongTru.getText();
+        int dtThuongTru = Integer.valueOf(txtDTTT.getText());
+        String dcTamTru = txtDCTamTru.getText();
+        int dtdd = Integer.valueOf(txtDTTT.getText());
+        String email = txtEmail.getText();
+        Date ngayVaoDoan = Date.valueOf(txtNgayVaoDoan.getText());
+        Date ngayVaoDang = Date.valueOf(txtNgayVaoDang.getText());
+        String quocTich = txtQuocTich.getText();
+        int passport = Integer.valueOf(txtPassport.getText());
+        Date ngayCapPass = Date.valueOf(txtNgayCapPass.getText());
+        String honNhan = cbxHonNhan.getSelectedItem().toString();
+        int maSoThue = Integer.valueOf(txtMaSoThue.getText());
+        Date ngayCapMST = Date.valueOf(txtNgayCapMST.getText());
+        int soTK = Integer.valueOf(txtSoTK.getText());
+        String maTK = txtMaTK.getText();
+        String hocHam = txtHocHam.getText();
+        String chuyenMon = txtChuyenMon.getText();
+        int knlvNam = Integer.valueOf(txtKNLVNam.getText());
+        int knlvThang = Integer.valueOf(txtKNLVThang.getText());
+        Date ngayVao = Date.valueOf(txtNgayVaoCT.getText());
+        Date ngayHet = Date.valueOf(txtNgayHetHanTV.getText());
+        Date ngayChinhThuc = Date.valueOf(txtNgayChinhThuc.getText());
+        float luongTV = Float.valueOf(txtKNLVNam.getText());
+        float luongCB = Float.valueOf(txtKNLVNam.getText());
+        float luongKD = Float.valueOf(txtKNLVNam.getText());
+        String hinh = "";
+
+        if (employeeInfo == null) {
+            employeeInfo = new EmployeeInfo();
+        }
+
+        employeeInfo.setMaNoiSinh(maNoiSinh);
+        employeeInfo.setMaNoiCapCMND(maNoiCapCM);
+        employeeInfo.setMaNoiLam(maNoiLam);
+        employeeInfo.setMaNoiCapPass(maNoiCapPass);
+        employeeInfo.setMaTGiao(maTonGiao);
+        employeeInfo.setMaDToc(maDantoc);
+        employeeInfo.setMaNH(maNganHang);
+        employeeInfo.setMaLNV(maLoaiNV);
+        employeeInfo.setMaTDo(maTrinhDO);
+        employeeInfo.setMaBC(maBangCap);
+        employeeInfo.setMaDvi(maDonVi);
+        employeeInfo.setMaPBan(maPhongBan);
+        employeeInfo.setMaBphan(maBoPhan);
+        employeeInfo.setMaCDanh(maChucDanh);
+        employeeInfo.setMaCVu(maChucvu);
+
+        employeeInfo.setMaNV(maNV);
+        employeeInfo.setSoThe(soThe);
+        employeeInfo.setHoTen(hoTen);
+        employeeInfo.setPhai(phai);
+        employeeInfo.setNamSinh(namSinh);
+        employeeInfo.setCmnd(cmnd);
+        employeeInfo.setNgayCapCMND(ngayCapCMND);
+        employeeInfo.setDcThuongTru(dcThuongTru);
+        employeeInfo.setDtThuongTru(dtThuongTru);
+        employeeInfo.setDcTamTru(dcTamTru);
+        employeeInfo.setDtdd(dtdd);
+        employeeInfo.setEmail(email);
+        employeeInfo.setNgayVaoDoan(ngayVaoDoan);
+        employeeInfo.setNgayVaoDang(ngayVaoDang);
+        employeeInfo.setQuocTich(quocTich);
+        employeeInfo.setPassport(passport);
+        employeeInfo.setNgayCapCass(ngayCapPass);
+        employeeInfo.setHonNhan(honNhan);
+        employeeInfo.setMaSoThue(maSoThue);
+        employeeInfo.setNgayCapMST(ngayCapMST);
+        employeeInfo.setSoTK(soTK);
+        employeeInfo.setMaTK(maTK);
+        employeeInfo.setHocHam(hocHam);
+        employeeInfo.setChuyenMon(chuyenMon);
+        employeeInfo.setKnlvNam(knlvNam);
+        employeeInfo.setKnlvThang(knlvThang);
+        employeeInfo.setNgayVao(ngayVao);
+        employeeInfo.setNgayHet(ngayHet);
+        employeeInfo.setNgayChinhThuc(ngayChinhThuc);
+        employeeInfo.setLuongCB(luongCB);
+        employeeInfo.setLuongTV(luongTV);
+        employeeInfo.setLuongKD(luongKD);
+        employeeInfo.setHinh(hinh);
+
+        return employeeInfo;
+    }
+
+    public EmployeeInfo getEmployeeInfo() {
+        return employeeInfo;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -256,7 +430,13 @@ public class Employee extends javax.swing.JFrame {
 
         cbxPhai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
 
-        cbxDanToc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
+        txtCMND.setText("03428974");
+
+        txtSoTK.setText("0");
+
+        txtMaNV.setText("A01");
+
+        txtPassport.setText("0");
 
         cbxHonNhan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Độc thân", "Đã có gia đình" }));
 
@@ -276,7 +456,17 @@ public class Employee extends javax.swing.JFrame {
 
         jLabel19.setText("Mã tài khoản");
 
-        cbxTonGiao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
+        txtNgayCapPass.setText("1997-07-17");
+
+        txtMaSoThue.setText("0");
+
+        txtNgayVaoDoan.setText("1997-07-17");
+
+        txtNgayCapCMND.setText("1997-07-17");
+
+        txtNamSinh.setText("1997");
+
+        txtSoThe.setText("3298");
 
         jLabel20.setText("Họ tên*");
 
@@ -298,19 +488,21 @@ public class Employee extends javax.swing.JFrame {
 
         jLabel29.setText("Ngân Hàng");
 
-        cbxNoiSinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
+        txtDTTT.setText("0");
 
-        cbxNoiCapCM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
+        txtHoTen.setText("AGENT");
+
+        txtDD.setText("0");
+
+        txtNgayVaoDang.setText("1997-07-17");
+
+        txtNgayCapMST.setText("1997-07-17");
 
         btnChonTep.setText("Chọn tệp");
 
         labelLink.setText("Không có tệp được chọn");
 
-        cbxNganHang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
-
         txtQuocTich.setText("Việt Nam");
-
-        cbxMaNoiCapPass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
 
         javax.swing.GroupLayout panelBasicInfoLayout = new javax.swing.GroupLayout(panelBasicInfo);
         panelBasicInfo.setLayout(panelBasicInfoLayout);
@@ -527,11 +719,7 @@ public class Employee extends javax.swing.JFrame {
 
         jLabel32.setText("Chuyên môn");
 
-        cbxTrinhDo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
-
         jLabel33.setText("Bằng cấp*");
-
-        cbxBangCap.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
 
         jLabel34.setText("Học Hàm");
 
@@ -616,13 +804,17 @@ public class Employee extends javax.swing.JFrame {
 
         jLabel39.setText("Loại nhân viên");
 
-        cbxLoaiNV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
-
         jLabel40.setText("Ngày vào chính thức");
+
+        txtNgayChinhThuc.setText("1997-07-17");
 
         jLabel41.setText("Ngày vào công ty*");
 
+        txtNgayVaoCT.setText("1997-07-17");
+
         jLabel42.setText("Ngày hết hạn thử việc");
+
+        txtNgayHetHanTV.setText("1997-07-17");
 
         javax.swing.GroupLayout panelNgayVaoLAmLayout = new javax.swing.GroupLayout(panelNgayVaoLAm);
         panelNgayVaoLAm.setLayout(panelNgayVaoLAmLayout);
@@ -679,25 +871,13 @@ public class Employee extends javax.swing.JFrame {
 
         jLabel45.setText("Chức danh*");
 
-        cbxChucDanh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chon---" }));
-
-        cbxDonVi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
-
         jLabel46.setText("Phòng ban*");
 
         jLabel47.setText("Chức vụ*");
 
-        cbxPhongBan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
-
-        cbxChucVu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
-
         jLabel48.setText("Bộ phận");
 
         jLabel49.setText("Địa điểm làm việc");
-
-        cbxDDLV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
-
-        cbxBoPhan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Chọn---" }));
 
         javax.swing.GroupLayout panelNoiLVLayout = new javax.swing.GroupLayout(panelNoiLV);
         panelNoiLV.setLayout(panelNoiLVLayout);
@@ -764,9 +944,15 @@ public class Employee extends javax.swing.JFrame {
 
         jLabel51.setText("Lương thử việc*");
 
+        txtLuongTV.setText("23012");
+
         jLabel52.setText("Lương CB*");
 
+        txtLuongCB.setText("19803");
+
         jLabel53.setText("Lương KD*");
+
+        txtLuongKD.setText("21398");
 
         javax.swing.GroupLayout panelLuongNVLayout = new javax.swing.GroupLayout(panelLuongNV);
         panelLuongNV.setLayout(panelLuongNVLayout);
@@ -881,6 +1067,19 @@ public class Employee extends javax.swing.JFrame {
 
     private void btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveActionPerformed
         stateButton(true);
+        try {
+
+            ebll.addEmployee(setEmployee());
+        } catch (SQLException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btSaveActionPerformed
 
     private void btEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditActionPerformed
@@ -888,121 +1087,91 @@ public class Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_btEditActionPerformed
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
-         stateButton(true);// TODO add your handling code here:
+        stateButton(true);// TODO add your handling code here:
     }//GEN-LAST:event_btCancelActionPerformed
-    
+
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
-            ArrayList<Province>proList=cbll.readProvince();
-            ArrayList<Ethnic>ethnicList=cbll.readEthnic();
-            ArrayList<Religion>religionList=cbll.readReligion();
-            ArrayList<Bank>bankList=cbll.readBank();
-            ArrayList<TypeEmp>typeEmpList=cbll.readTypeEmp();
-            ArrayList<Degree>degreeList = cbll.readDegree();
-            ArrayList<Certificate>certificateList = cbll.readCertificate();
-            ArrayList<UnitWork>unitWorkList = cbll.readUnitWork();
-            ArrayList<Room>roomList = cbll.readRoom();
-            ArrayList<Department>departmentList = cbll.readDepartment();
-            ArrayList<Title>titleList = cbll.readTitle();    
-            ArrayList<Position>positionList = cbll.readPosition();            
-            
-            Province province = new Province();
-            Ethnic ethnic = new Ethnic();
-            Religion religion = new Religion();
-            Bank bank = new Bank();
-            TypeEmp typeEmp = new TypeEmp();
-            Degree degree =new Degree();
-            Certificate certificate = new Certificate();
-            UnitWork unitWork = new UnitWork();
-            Room room = new Room();
-            Department department = new Department();
-            Title title = new Title();
-            Position position = new Position();
-            
-            for(int i=0;i<proList.size();i++)
-            {
-                province=proList.get(i);                                
-                this.cbxNoiSinh.addItem(province.getProvinceName());
-                this.cbxNoiCapCM.addItem(province.getProvinceName());
-                this.cbxMaNoiCapPass.addItem(province.getProvinceName());
-                this.cbxDDLV.addItem(province.getProvinceName());
-            }
-            
-            for(int i=0;i<ethnicList.size();i++)
-            {
-                ethnic=ethnicList.get(i);                                
-                this.cbxDanToc.addItem(ethnic.getEthnicName());
-            }
-            
-            for(int i=0;i<religionList.size();i++)
-            {
-                religion=religionList.get(i);                                
-                this.cbxTonGiao.addItem(religion.getReligionName());
-            }
-            
-            for(int i=0;i<bankList.size();i++)
-            {
-                bank=bankList.get(i);
-                this.cbxNganHang.addItem(bank.getBankName());
-            }
-            
-            for(int i=0;i<typeEmpList.size();i++)
-            {
-                typeEmp=typeEmpList.get(i);
-                this.cbxLoaiNV.addItem(typeEmp.getTypeName());
-            }
-            
-            for(int i=0;i<degreeList.size();i++)
-            {                
-                degree=degreeList.get(i);
-                this.cbxTrinhDo.addItem(degree.getDegreeName());
-            }
-            
-            for(int i=0;i<certificateList.size();i++)
-            {
-                certificate=certificateList.get(i);
-                this.cbxBangCap.addItem(certificate.getCertificateName());
-            }
-            
-            for(int i=0;i<unitWorkList.size();i++)
-            {
-                unitWork=unitWorkList.get(i);
-                this.cbxDonVi.addItem(unitWork.getUnitName());
-            }
-            
-            for(int i=0;i<roomList.size();i++)
-            {
-                room=roomList.get(i);
-                this.cbxPhongBan.addItem(room.getRoomName());
-            }
-            
-            for(int i=0;i<departmentList.size();i++)
-            {
-                department=departmentList.get(i);
-                this.cbxBoPhan.addItem(department.getDepartmentName());
-            }
-            
-            for(int i=0;i<titleList.size();i++)
-            {
-                title=titleList.get(i);
-                this.cbxChucDanh.addItem(title.getTitleName());
-            }
-            
-            
-            for(int i=0;i<positionList.size();i++)
-            {
-                position=positionList.get(i);
-                this.cbxChucVu.addItem(position.getPositionName());
-            }
-            
+            proList = cbll.readProvince();
+            ethnicList = cbll.readEthnic();
+            religionList = cbll.readReligion();
+            bankList = cbll.readBank();
+            typeEmpList = cbll.readTypeEmp();
+            degreeList = cbll.readDegree();
+            certificateList = cbll.readCertificate();
+            unitWorkList = cbll.readUnitWork();
+            roomList = cbll.readRoom();
+            departmentList = cbll.readDepartment();
+            titleList = cbll.readTitle();
+            positionList = cbll.readPosition();
+
+//            province = new Province();
+//            ethnic = new Ethnic();
+//            religion = new Religion();
+//            bank = new Bank();
+//            typeEmp = new TypeEmp();
+//            degree = new Degree();
+//            certificate = new Certificate();
+//            unitWork = new UnitWork();
+//            room = new Room();
+//            department = new Department();
+//            title = new Title();
+//            position = new Position();
+            DefaultComboBoxModel cbNS = new DefaultComboBoxModel(proList.toArray(new Province[0]));
+            cbxNoiSinh.setModel(cbNS);
+
+            DefaultComboBoxModel cbNCCM = new DefaultComboBoxModel(proList.toArray(new Province[0]));
+            cbxNoiCapCM.setModel(cbNCCM);
+
+            DefaultComboBoxModel cbNCPASS = new DefaultComboBoxModel(proList.toArray(new Province[0]));
+            cbxMaNoiCapPass.setModel(cbNCPASS);
+
+            DefaultComboBoxModel cbDDLV = new DefaultComboBoxModel(proList.toArray(new Province[0]));
+            cbxDDLV.setModel(cbDDLV);
+            DefaultComboBoxModel cbNH = new DefaultComboBoxModel(bankList.toArray(new Bank[0]));
+            cbxNganHang.setModel(cbNH);
+
+            DefaultComboBoxModel cbDT = new DefaultComboBoxModel(ethnicList.toArray(new Ethnic[0]));
+            cbxDanToc.setModel(cbDT);
+
+            DefaultComboBoxModel cbTG = new DefaultComboBoxModel(religionList.toArray(new Religion[0]));
+            cbxTonGiao.setModel(cbTG);
+
+            DefaultComboBoxModel cbTD = new DefaultComboBoxModel(degreeList.toArray(new Degree[0]));
+            cbxTrinhDo.setModel(cbTD);
+
+            DefaultComboBoxModel cbBC = new DefaultComboBoxModel(certificateList.toArray(new Certificate[0]));
+            cbxBangCap.setModel(cbBC);
+
+            DefaultComboBoxModel cbLNV = new DefaultComboBoxModel(typeEmpList.toArray(new TypeEmp[0]));
+            cbxLoaiNV.setModel(cbLNV);
+
+            DefaultComboBoxModel cbDV = new DefaultComboBoxModel(unitWorkList.toArray(new UnitWork[0]));
+            cbxDonVi.setModel(cbDV);
+
+            DefaultComboBoxModel cbPB = new DefaultComboBoxModel(roomList.toArray(new Room[0]));
+            cbxPhongBan.setModel(cbPB);
+
+            DefaultComboBoxModel cbBP = new DefaultComboBoxModel(departmentList.toArray(new Department[0]));
+            cbxBoPhan.setModel(cbBP);
+
+            DefaultComboBoxModel cbCD = new DefaultComboBoxModel(titleList.toArray(new Title[0]));
+            cbxChucDanh.setModel(cbCD);
+
+            DefaultComboBoxModel cbCV = new DefaultComboBoxModel(positionList.toArray(new Position[0]));
+            cbxChucVu.setModel(cbCV);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
         } catch (SQLException ex) {
             Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-        }catch (Exception ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
             Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE); 
-        }    
-                
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_formWindowOpened
 
     private void btCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCloseActionPerformed

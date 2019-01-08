@@ -5,7 +5,7 @@
  */
 package ims.dal;
 
-import ims.objects.UnitWork;
+import ims.dto.UnitWork;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -5,7 +5,7 @@
  */
 package ims.dal;
 
-import ims.objects.Degree;
+import ims.dto.Degree;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

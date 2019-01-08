@@ -5,7 +5,7 @@
  */
 package ims.dal;
 
-import ims.objects.Ethnic;
+import ims.dto.Ethnic;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
