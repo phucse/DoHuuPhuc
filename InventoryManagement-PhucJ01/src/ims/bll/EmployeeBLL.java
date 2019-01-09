@@ -30,4 +30,9 @@ public class EmployeeBLL {
         eDal.deleteEmp(id);
     }
     
+    public EmployeeInfo detailEmployeeInfo(String id) throws SQLException, ClassNotFoundException{
+        EmployeeInfo em = eDal.detailEmployeeInfo(id);
+        return em;
+    }
+    
 }

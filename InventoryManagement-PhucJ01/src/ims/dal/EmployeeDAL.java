@@ -74,7 +74,7 @@ public class EmployeeDAL extends Database {
         float luongKD = em.getLuongKD();
         String hinh = em.getHinh();
         
-        String sql = "INSERT INTO `nhanvien` (`MaNV`, `SoThe`, `TenNV`, `Phai`, `NamSinh`, `MaNoiSinh`, `CMND`, `NgayCapCM`, `MaNoiCapCM`, `DCThuongTru`, `DTThuongTru`, `DCTamTru`, `DTDD`, `Email`, `NgayVaoDoan`, `NgayVaoDang`, `MaDT`, `MaTG`, `QuocTich`, `Passport`, `NgayCapPass`, `MaNoiCapPass`, `HonNhan`, `MaSoThue`, `NgayCapMST`, `SoTK`, `MaTK`, `MaNH`, `MaTD`, `MaBC`, `HocHam`, `ChuyenMon`, `KNLVNam`, `KNLVThang`, `MaLNV`, `NgayVao`, `NgayHet`, `NgayChinhThuc`, `MaDV`, `MaPB`, `MaBP`, `MaCD`, `MaCV`, `MaNoiLam`, `LuongTV`, `LuongCB`, `LuongKD`, `Hinh`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO nhanvien (MaNV, SoThe, TenNV, Phai, NamSinh, MaNoiSinh, CMND, NgayCapCM, MaNoiCapCM, DCThuongTru, DTThuongTru, DCTamTru, DTDD, Email, NgayVaoDoan, NgayVaoDang, MaDT, MaTG, QuocTich, Passport, NgayCapPass, MaNoiCapPass, HonNhan, MaSoThue, NgayCapMST, SoTK, MaTK, MaNH, MaTD, MaBC, HocHam, ChuyenMon, KNLVNam, KNLVThang, MaLNV, NgayVao, NgayHet, NgayChinhThuc, MaDV, MaPB, MaBP, MaCD, MaCV, MaNoiLam, LuongTV, LuongCB, LuongKD, Hinh) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         pre = conn.prepareStatement(sql);
         pre.setString(1, maNV);
         pre.setString(2, soThe);
@@ -164,5 +164,71 @@ public class EmployeeDAL extends Database {
         stm.executeUpdate(sql);
         stm.close();
         conn.close();
+    }
+    
+    public EmployeeInfo detailEmployeeInfo(String id) throws SQLException, ClassNotFoundException {
+        Connection conn = null;
+        Statement stm = null;
+        
+        conn = getConnection();        
+        stm = conn.createStatement();
+        EmployeeInfo employeeInfo = new EmployeeInfo();
+        String sql = "SELECT * FROM nhanvien where MaNV = '"+id+"'";
+        
+        ResultSet rs = stm.executeQuery(sql); 
+        if (rs.next()) {               
+            employeeInfo.setMaNV(rs.getString("MaNV"));   
+            employeeInfo.setSoThe(rs.getString("Sothe"));            
+            employeeInfo.setHoTen(rs.getString("TenNV"));   
+            employeeInfo.setPhai(rs.getString("Phai"));
+            employeeInfo.setMaNoiSinh(rs.getInt("MaNoiSinh"));
+            employeeInfo.setNamSinh(rs.getInt("NamSinh"));               
+            employeeInfo.setCmnd(rs.getString("CMND"));   
+            employeeInfo.setNgayCapCMND(rs.getDate("NgayCapCM"));               
+            employeeInfo.setMaNoiCapCMND(rs.getInt("MaNoiCapCM"));   
+            employeeInfo.setDcThuongTru(rs.getString("DCThuongTru"));   
+            employeeInfo.setDtThuongTru(rs.getInt("DTThuongTru"));   
+            employeeInfo.setDcThuongTru(rs.getString("DCTamTru"));   
+            employeeInfo.setDtdd(rs.getInt("DTDD"));   
+            employeeInfo.setEmail(rs.getString("Email"));   
+            employeeInfo.setNgayVaoDoan(rs.getDate("NgayVaoDoan"));   
+            employeeInfo.setNgayVaoDang(rs.getDate("NgayVaoDang"));   
+            employeeInfo.setMaDToc(rs.getInt("MaDT"));   
+            employeeInfo.setMaTGiao(rs.getInt("MaTG"));   
+            employeeInfo.setQuocTich(rs.getString("QuocTich"));   
+            employeeInfo.setPassport(rs.getInt("Passport"));   
+            employeeInfo.setNgayCapCass(rs.getDate("NgayCapPass"));   
+            employeeInfo.setMaNoiCapPass(rs.getInt("MaNoiCapPass"));   
+            employeeInfo.setHonNhan(rs.getString("HonNHan"));   
+            employeeInfo.setMaSoThue(rs.getInt("MaSoThue"));   
+            employeeInfo.setNgayCapMST(rs.getDate("NgayCapMST"));   
+            employeeInfo.setSoTK(rs.getInt("SoTK"));   
+            employeeInfo.setMaTK(rs.getString("MaTK"));   
+            employeeInfo.setMaNH(rs.getInt("MaNH"));   
+            employeeInfo.setMaTDo(rs.getInt("MaTD"));   
+            employeeInfo.setMaBC(rs.getInt("MaBC"));   
+            employeeInfo.setHocHam(rs.getString("HocHam"));   
+            employeeInfo.setChuyenMon(rs.getString("ChuyenMon"));   
+            employeeInfo.setKnlvThang(rs.getInt("KNLVThang"));   
+            employeeInfo.setKnlvNam(rs.getInt("KNLVNam"));   
+            employeeInfo.setMaLNV(rs.getInt("MaLNV"));   
+            employeeInfo.setNgayVao(rs.getDate("NgayVao"));   
+            employeeInfo.setNgayHet(rs.getDate("NgayHet"));   
+            employeeInfo.setNgayChinhThuc(rs.getDate("NgayChinhThuc"));   
+            employeeInfo.setMaDvi(rs.getInt("MaDV"));   
+            employeeInfo.setMaPBan(rs.getInt("MaPB"));   
+            employeeInfo.setMaBphan(rs.getInt("MaBP"));   
+            employeeInfo.setMaCDanh(rs.getInt("MaCD"));   
+            employeeInfo.setMaCVu(rs.getInt("MaCV"));   
+            employeeInfo.setMaNoiLam(rs.getInt("MaNoiLam"));   
+            employeeInfo.setLuongCB(rs.getFloat("LuongCB"));   
+            employeeInfo.setLuongTV(rs.getFloat("LuongTV"));   
+            employeeInfo.setLuongKD(rs.getFloat("LuongKD"));   
+            employeeInfo.setHinh(rs.getString("Hinh"));
+        }
+        rs.close();
+        stm.close();
+        conn.close();
+        return employeeInfo;
     }
 }

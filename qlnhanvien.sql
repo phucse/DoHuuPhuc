@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 09, 2019 lúc 08:40 AM
+-- Thời gian đã tạo: Th1 09, 2019 lúc 06:32 PM
 -- Phiên bản máy phục vụ: 10.1.37-MariaDB
 -- Phiên bản PHP: 7.2.12
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `qlnhanvien`
 --
-CREATE DATABASE IF NOT EXISTS `qlnhanvien` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `qlnhanvien`;
 
 -- --------------------------------------------------------
 
@@ -30,16 +28,10 @@ USE `qlnhanvien`;
 -- Cấu trúc bảng cho bảng `bangcap`
 --
 
-DROP TABLE IF EXISTS `bangcap`;
-CREATE TABLE IF NOT EXISTS `bangcap` (
+CREATE TABLE `bangcap` (
   `MaBC` int(11) NOT NULL,
-  `TenBC` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`MaBC`)
+  `TenBC` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `bangcap`:
---
 
 --
 -- Đang đổ dữ liệu cho bảng `bangcap`
@@ -58,16 +50,10 @@ INSERT INTO `bangcap` (`MaBC`, `TenBC`) VALUES
 -- Cấu trúc bảng cho bảng `bophan`
 --
 
-DROP TABLE IF EXISTS `bophan`;
-CREATE TABLE IF NOT EXISTS `bophan` (
+CREATE TABLE `bophan` (
   `MaBP` int(11) NOT NULL,
-  `TenBP` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`MaBP`)
+  `TenBP` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `bophan`:
---
 
 --
 -- Đang đổ dữ liệu cho bảng `bophan`
@@ -85,16 +71,10 @@ INSERT INTO `bophan` (`MaBP`, `TenBP`) VALUES
 -- Cấu trúc bảng cho bảng `chucdanh`
 --
 
-DROP TABLE IF EXISTS `chucdanh`;
-CREATE TABLE IF NOT EXISTS `chucdanh` (
+CREATE TABLE `chucdanh` (
   `MaCD` int(11) NOT NULL,
-  `TenCD` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`MaCD`)
+  `TenCD` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `chucdanh`:
---
 
 --
 -- Đang đổ dữ liệu cho bảng `chucdanh`
@@ -112,16 +92,10 @@ INSERT INTO `chucdanh` (`MaCD`, `TenCD`) VALUES
 -- Cấu trúc bảng cho bảng `chucvu`
 --
 
-DROP TABLE IF EXISTS `chucvu`;
-CREATE TABLE IF NOT EXISTS `chucvu` (
+CREATE TABLE `chucvu` (
   `MaCV` int(11) NOT NULL,
-  `TenCV` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`MaCV`)
+  `TenCV` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `chucvu`:
---
 
 --
 -- Đang đổ dữ liệu cho bảng `chucvu`
@@ -143,16 +117,10 @@ INSERT INTO `chucvu` (`MaCV`, `TenCV`) VALUES
 -- Cấu trúc bảng cho bảng `dantoc`
 --
 
-DROP TABLE IF EXISTS `dantoc`;
-CREATE TABLE IF NOT EXISTS `dantoc` (
+CREATE TABLE `dantoc` (
   `MaDT` int(11) NOT NULL,
-  `TenDT` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`MaDT`)
+  `TenDT` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `dantoc`:
---
 
 --
 -- Đang đổ dữ liệu cho bảng `dantoc`
@@ -173,16 +141,10 @@ INSERT INTO `dantoc` (`MaDT`, `TenDT`) VALUES
 -- Cấu trúc bảng cho bảng `donvi`
 --
 
-DROP TABLE IF EXISTS `donvi`;
-CREATE TABLE IF NOT EXISTS `donvi` (
+CREATE TABLE `donvi` (
   `MaDV` int(11) NOT NULL,
-  `TenDV` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`MaDV`)
+  `TenDV` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `donvi`:
---
 
 --
 -- Đang đổ dữ liệu cho bảng `donvi`
@@ -199,16 +161,10 @@ INSERT INTO `donvi` (`MaDV`, `TenDV`) VALUES
 -- Cấu trúc bảng cho bảng `loainv`
 --
 
-DROP TABLE IF EXISTS `loainv`;
-CREATE TABLE IF NOT EXISTS `loainv` (
+CREATE TABLE `loainv` (
   `MaLNV` int(11) NOT NULL,
-  `TenLNV` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`MaLNV`)
+  `TenLNV` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `loainv`:
---
 
 --
 -- Đang đổ dữ liệu cho bảng `loainv`
@@ -226,16 +182,10 @@ INSERT INTO `loainv` (`MaLNV`, `TenLNV`) VALUES
 -- Cấu trúc bảng cho bảng `nganhang`
 --
 
-DROP TABLE IF EXISTS `nganhang`;
-CREATE TABLE IF NOT EXISTS `nganhang` (
+CREATE TABLE `nganhang` (
   `MaNH` int(11) NOT NULL,
-  `TenNH` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`MaNH`)
+  `TenNH` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `nganhang`:
---
 
 --
 -- Đang đổ dữ liệu cho bảng `nganhang`
@@ -254,8 +204,7 @@ INSERT INTO `nganhang` (`MaNH`, `TenNH`) VALUES
 -- Cấu trúc bảng cho bảng `nhanvien`
 --
 
-DROP TABLE IF EXISTS `nhanvien`;
-CREATE TABLE IF NOT EXISTS `nhanvien` (
+CREATE TABLE `nhanvien` (
   `MaNV` char(10) COLLATE utf8_unicode_ci NOT NULL,
   `SoThe` char(10) COLLATE utf8_unicode_ci NOT NULL,
   `TenNV` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -303,58 +252,8 @@ CREATE TABLE IF NOT EXISTS `nhanvien` (
   `LuongTV` float NOT NULL,
   `LuongCB` float NOT NULL,
   `LuongKD` float NOT NULL,
-  `Hinh` char(10) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`MaNV`),
-  KEY `MaTG` (`MaTG`),
-  KEY `MaDT` (`MaDT`),
-  KEY `MaNoiCapPass` (`MaNoiCapPass`),
-  KEY `MaLNV` (`MaLNV`),
-  KEY `MaTD` (`MaTD`),
-  KEY `MaBC` (`MaBC`),
-  KEY `MaDV` (`MaDV`),
-  KEY `MaBP` (`MaBP`),
-  KEY `MaCD` (`MaCD`),
-  KEY `MaCV` (`MaCV`),
-  KEY `MaNoiLam` (`MaNoiLam`),
-  KEY `MaNH` (`MaNH`),
-  KEY `MaNoiSinh` (`MaNoiSinh`),
-  KEY `MaNoiCapCM` (`MaNoiCapCM`) USING BTREE,
-  KEY `MaPB` (`MaPB`) USING BTREE
+  `Hinh` char(10) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `nhanvien`:
---   `MaNoiCapCM`
---       `tinhthanh` -> `MaTT`
---   `MaPB`
---       `phongban` -> `MaPB`
---   `MaCV`
---       `chucvu` -> `MaCV`
---   `MaCD`
---       `chucdanh` -> `MaCD`
---   `MaNH`
---       `nganhang` -> `MaNH`
---   `MaNoiSinh`
---       `tinhthanh` -> `MaTT`
---   `MaNoiCapPass`
---       `tinhthanh` -> `MaTT`
---   `MaNoiLam`
---       `tinhthanh` -> `MaTT`
---   `MaTG`
---       `tongiao` -> `MaTG`
---   `MaDT`
---       `dantoc` -> `MaDT`
---   `MaLNV`
---       `loainv` -> `MaLNV`
---   `MaTD`
---       `trinhdo` -> `MaTD`
---   `MaBP`
---       `bophan` -> `MaBP`
---   `MaBC`
---       `bangcap` -> `MaBC`
---   `MaDV`
---       `donvi` -> `MaDV`
---
 
 --
 -- Đang đổ dữ liệu cho bảng `nhanvien`
@@ -362,7 +261,16 @@ CREATE TABLE IF NOT EXISTS `nhanvien` (
 
 INSERT INTO `nhanvien` (`MaNV`, `SoThe`, `TenNV`, `Phai`, `NamSinh`, `MaNoiSinh`, `CMND`, `NgayCapCM`, `MaNoiCapCM`, `DCThuongTru`, `DTThuongTru`, `DCTamTru`, `DTDD`, `Email`, `NgayVaoDoan`, `NgayVaoDang`, `MaDT`, `MaTG`, `QuocTich`, `Passport`, `NgayCapPass`, `MaNoiCapPass`, `HonNhan`, `MaSoThue`, `NgayCapMST`, `SoTK`, `MaTK`, `MaNH`, `MaTD`, `MaBC`, `HocHam`, `ChuyenMon`, `KNLVNam`, `KNLVThang`, `MaLNV`, `NgayVao`, `NgayHet`, `NgayChinhThuc`, `MaDV`, `MaPB`, `MaBP`, `MaCD`, `MaCV`, `MaNoiLam`, `LuongTV`, `LuongCB`, `LuongKD`, `Hinh`) VALUES
 ('A01', '3298', 'AGENT', 'Nam', 1997, 1, '03428974', '1997-07-17', 1, '', 0, '', 0, '', '1997-07-17', '1997-07-17', 1, 1, 'Vi?t Nam', 0, '1997-07-17', 1, '??c thân', 0, '1997-07-17', 0, '', 1, 1, 1, '', '', 0, 0, 1, '1997-07-17', '1997-07-17', '1997-07-17', 1, 1, 1, 1, 1, 1, 0, 0, 0, ''),
-('A013', '3298', 'AGENT', 'Nam', 1997, 3, '03428974', '1997-07-17', 1, '', 0, '', 0, '', '1997-07-17', '1997-07-17', 1, 1, 'Vi?t Nam', 0, '1997-07-17', 1, '??c thân', 0, '1997-07-17', 0, '', 1, 1, 1, '', '', 0, 0, 1, '1997-07-17', '1997-07-17', '1997-07-17', 1, 1, 1, 1, 1, 1, 0, 0, 0, '');
+('A020', '3298', 'AGENT', 'Nam', 1997, 1, '03428974', '1997-07-17', 1, '', 0, '', 0, '', '1997-07-17', '1997-07-17', 1, 1, 'Vi?t Nam', 0, '1997-07-17', 1, '??c thân', 0, '1997-07-17', 0, '', 1, 1, 1, '', '', 0, 0, 1, '1997-07-17', '1997-07-17', '1997-07-17', 1, 1, 1, 1, 1, 1, 0, 0, 0, ''),
+('A0203', '3298', 'AGENT', 'Nam', 1997, 1, '03428974', '1997-07-17', 1, '', 0, '', 0, '', '1997-07-17', '1997-07-17', 1, 1, 'Vi?t Nam', 0, '1997-07-17', 1, '??c thân', 0, '1997-07-17', 0, '', 1, 1, 1, '', '', 0, 0, 1, '1997-07-17', '1997-07-17', '1997-07-17', 1, 1, 1, 1, 1, 1, 0, 0, 0, ''),
+('A236', '3298', 'AGENT', 'Nam', 1997, 1, '03428974', '1997-07-17', 1, '', 0, '', 0, '', '1997-07-17', '1997-07-17', 1, 1, 'Vi?t Nam', 0, '1997-07-17', 1, '??c thân', 0, '1997-07-17', 0, '', 1, 1, 1, '', '', 0, 0, 1, '1997-07-17', '1997-07-17', '1997-07-17', 1, 1, 1, 1, 1, 1, 0, 0, 0, ''),
+('A53', '3298', 'AGENT', 'Nam', 1997, 1, '03428974', '1997-07-17', 1, '', 0, '', 0, '', '1997-07-17', '1997-07-17', 1, 1, 'Vi?t Nam', 0, '1997-07-17', 1, '??c thân', 0, '1997-07-17', 0, '', 1, 1, 1, '', '', 0, 0, 1, '1997-07-17', '1997-07-17', '1997-07-17', 1, 1, 1, 1, 1, 1, 0, 0, 0, ''),
+('A876', '3298', 'Sen', 'Nam', 1997, 3, '03428974', '1997-07-17', 1, '', 0, '', 0, '', '1997-07-17', '1997-07-17', 1, 1, 'Vi?t Nam', 0, '1997-07-17', 1, '??c thân', 0, '1997-07-17', 0, '', 1, 1, 1, '', '', 0, 0, 1, '1997-07-17', '1997-07-17', '1997-07-17', 1, 1, 1, 1, 1, 1, 23012, 19803, 21398, ''),
+('A92', '3298', 'eqeqe', 'Nam', 1997, 1, '03428974', '1997-07-17', 1, '', 0, '', 0, '', '1997-07-17', '1997-07-17', 1, 1, 'Vi?t Nam', 0, '1997-07-17', 1, '??c thân', 0, '1997-07-17', 0, '', 1, 1, 1, '', '', 0, 0, 1, '1997-07-17', '1997-07-17', '1997-07-17', 1, 1, 1, 1, 1, 1, 0, 0, 0, ''),
+('B02', '3298', 'AGENT', 'Nam', 1997, 1, '03428974', '1997-07-17', 1, '', 0, '', 0, '', '1997-07-17', '1997-07-17', 1, 1, 'Vi?t Nam', 0, '1997-07-17', 1, '??c thân', 0, '1997-07-17', 0, '', 1, 1, 1, '', '', 0, 0, 1, '1997-07-17', '1997-07-17', '1997-07-17', 1, 1, 1, 1, 1, 1, 0, 0, 0, ''),
+('B27', '3298', 'Jim', 'Nam', 1997, 1, '03428974', '1997-07-17', 1, '', 0, '', 0, '', '1997-07-17', '1997-07-17', 1, 1, 'Vi?t Nam', 0, '1997-07-17', 1, '??c thân', 0, '1997-07-17', 0, '', 1, 1, 1, '', '', 0, 0, 1, '1997-07-17', '1997-07-17', '1997-07-17', 1, 1, 1, 1, 1, 1, 0, 0, 0, ''),
+('R43', '3298', '763', 'Nam', 1997, 3, '03428974', '1997-07-17', 1, '', 0, '', 0, '', '1997-07-17', '1997-07-17', 1, 1, 'Vi?t Nam', 0, '1997-07-17', 1, '??c thân', 0, '1997-07-17', 0, '', 1, 1, 1, '', '', 0, 0, 1, '1997-07-17', '1997-07-17', '1997-07-17', 1, 1, 1, 1, 1, 1, 23012, 19803, 21398, ''),
+('S31', '1234', 'Khang', 'Nam', 1980, 2, '03428974', '1997-07-17', 1, '', 0, '', 0, '', '1997-07-17', '1997-07-17', 1, 1, 'Vi?t Nam', 0, '1997-07-17', 1, '??c thân', 0, '1997-07-17', 0, '', 1, 1, 1, '', '', 0, 0, 1, '1997-07-17', '1997-07-17', '1997-07-17', 1, 1, 1, 1, 1, 1, 23012, 19803, 21398, '');
 
 -- --------------------------------------------------------
 
@@ -370,16 +278,10 @@ INSERT INTO `nhanvien` (`MaNV`, `SoThe`, `TenNV`, `Phai`, `NamSinh`, `MaNoiSinh`
 -- Cấu trúc bảng cho bảng `phongban`
 --
 
-DROP TABLE IF EXISTS `phongban`;
-CREATE TABLE IF NOT EXISTS `phongban` (
+CREATE TABLE `phongban` (
   `MaPB` int(11) NOT NULL,
-  `TenPB` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`MaPB`)
+  `TenPB` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `phongban`:
---
 
 --
 -- Đang đổ dữ liệu cho bảng `phongban`
@@ -399,16 +301,10 @@ INSERT INTO `phongban` (`MaPB`, `TenPB`) VALUES
 -- Cấu trúc bảng cho bảng `tinhthanh`
 --
 
-DROP TABLE IF EXISTS `tinhthanh`;
-CREATE TABLE IF NOT EXISTS `tinhthanh` (
+CREATE TABLE `tinhthanh` (
   `MaTT` int(11) NOT NULL,
-  `TenTT` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`MaTT`)
+  `TenTT` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `tinhthanh`:
---
 
 --
 -- Đang đổ dữ liệu cho bảng `tinhthanh`
@@ -426,16 +322,10 @@ INSERT INTO `tinhthanh` (`MaTT`, `TenTT`) VALUES
 -- Cấu trúc bảng cho bảng `tongiao`
 --
 
-DROP TABLE IF EXISTS `tongiao`;
-CREATE TABLE IF NOT EXISTS `tongiao` (
+CREATE TABLE `tongiao` (
   `MaTG` int(11) NOT NULL,
-  `TenTG` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`MaTG`)
+  `TenTG` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `tongiao`:
---
 
 --
 -- Đang đổ dữ liệu cho bảng `tongiao`
@@ -453,16 +343,10 @@ INSERT INTO `tongiao` (`MaTG`, `TenTG`) VALUES
 -- Cấu trúc bảng cho bảng `trinhdo`
 --
 
-DROP TABLE IF EXISTS `trinhdo`;
-CREATE TABLE IF NOT EXISTS `trinhdo` (
+CREATE TABLE `trinhdo` (
   `MaTD` int(11) NOT NULL,
-  `TenTD` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`MaTD`)
+  `TenTD` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- RELATIONSHIPS FOR TABLE `trinhdo`:
---
 
 --
 -- Đang đổ dữ liệu cho bảng `trinhdo`
@@ -473,6 +357,103 @@ INSERT INTO `trinhdo` (`MaTD`, `TenTD`) VALUES
 (2, 'Cao đẳng'),
 (3, 'Trung cấp nghề'),
 (4, 'Tốt nghiệp cấp 3');
+
+--
+-- Chỉ mục cho các bảng đã đổ
+--
+
+--
+-- Chỉ mục cho bảng `bangcap`
+--
+ALTER TABLE `bangcap`
+  ADD PRIMARY KEY (`MaBC`);
+
+--
+-- Chỉ mục cho bảng `bophan`
+--
+ALTER TABLE `bophan`
+  ADD PRIMARY KEY (`MaBP`);
+
+--
+-- Chỉ mục cho bảng `chucdanh`
+--
+ALTER TABLE `chucdanh`
+  ADD PRIMARY KEY (`MaCD`);
+
+--
+-- Chỉ mục cho bảng `chucvu`
+--
+ALTER TABLE `chucvu`
+  ADD PRIMARY KEY (`MaCV`);
+
+--
+-- Chỉ mục cho bảng `dantoc`
+--
+ALTER TABLE `dantoc`
+  ADD PRIMARY KEY (`MaDT`);
+
+--
+-- Chỉ mục cho bảng `donvi`
+--
+ALTER TABLE `donvi`
+  ADD PRIMARY KEY (`MaDV`);
+
+--
+-- Chỉ mục cho bảng `loainv`
+--
+ALTER TABLE `loainv`
+  ADD PRIMARY KEY (`MaLNV`);
+
+--
+-- Chỉ mục cho bảng `nganhang`
+--
+ALTER TABLE `nganhang`
+  ADD PRIMARY KEY (`MaNH`);
+
+--
+-- Chỉ mục cho bảng `nhanvien`
+--
+ALTER TABLE `nhanvien`
+  ADD PRIMARY KEY (`MaNV`),
+  ADD KEY `MaTG` (`MaTG`),
+  ADD KEY `MaDT` (`MaDT`),
+  ADD KEY `MaNoiCapPass` (`MaNoiCapPass`),
+  ADD KEY `MaLNV` (`MaLNV`),
+  ADD KEY `MaTD` (`MaTD`),
+  ADD KEY `MaBC` (`MaBC`),
+  ADD KEY `MaDV` (`MaDV`),
+  ADD KEY `MaBP` (`MaBP`),
+  ADD KEY `MaCD` (`MaCD`),
+  ADD KEY `MaCV` (`MaCV`),
+  ADD KEY `MaNoiLam` (`MaNoiLam`),
+  ADD KEY `MaNH` (`MaNH`),
+  ADD KEY `MaNoiSinh` (`MaNoiSinh`),
+  ADD KEY `MaNoiCapCM` (`MaNoiCapCM`) USING BTREE,
+  ADD KEY `MaPB` (`MaPB`) USING BTREE;
+
+--
+-- Chỉ mục cho bảng `phongban`
+--
+ALTER TABLE `phongban`
+  ADD PRIMARY KEY (`MaPB`);
+
+--
+-- Chỉ mục cho bảng `tinhthanh`
+--
+ALTER TABLE `tinhthanh`
+  ADD PRIMARY KEY (`MaTT`);
+
+--
+-- Chỉ mục cho bảng `tongiao`
+--
+ALTER TABLE `tongiao`
+  ADD PRIMARY KEY (`MaTG`);
+
+--
+-- Chỉ mục cho bảng `trinhdo`
+--
+ALTER TABLE `trinhdo`
+  ADD PRIMARY KEY (`MaTD`);
 
 --
 -- Các ràng buộc cho các bảng đã đổ

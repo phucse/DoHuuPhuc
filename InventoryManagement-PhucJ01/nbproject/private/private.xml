@@ -5,6 +5,9 @@
         <group>
             <file>file:/C:/Users/sieut/Downloads/Java/InventoryManagement-PhucJ01/src/ims/gui/EmployeeList.java</file>
             <file>file:/C:/Users/sieut/Downloads/Java/InventoryManagement-PhucJ01/src/ims/gui/Employee.java</file>
+            <file>file:/C:/Users/sieut/Downloads/Java/InventoryManagement-PhucJ01/src/ims/dto/Province.java</file>
+            <file>file:/C:/Users/sieut/Downloads/Java/InventoryManagement-PhucJ01/src/ims/dal/EmployeeDAL.java</file>
+            <file>file:/C:/Users/sieut/Downloads/Java/InventoryManagement-PhucJ01/src/ims/bll/EmployeeBLL.java</file>
         </group>
     </open-files>
 </project-private>
