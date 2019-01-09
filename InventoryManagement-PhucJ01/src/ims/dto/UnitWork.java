@@ -41,6 +41,15 @@ public class UnitWork {
     }
     
     @Override
+    public boolean equals(Object other) {
+        UnitWork unit = (UnitWork) other;
+        if(other == null || unit.unitID != this.unitID) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
     public String toString() {
         return unitkName;
     } 

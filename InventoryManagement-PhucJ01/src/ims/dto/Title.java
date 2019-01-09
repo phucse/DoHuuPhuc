@@ -41,6 +41,15 @@ public class Title {
     }
     
     @Override
+    public boolean equals(Object other) {
+        Title title = (Title) other;
+        if(other == null || title.titleID != this.titleID) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
     public String toString() {
         return titleName;
     }

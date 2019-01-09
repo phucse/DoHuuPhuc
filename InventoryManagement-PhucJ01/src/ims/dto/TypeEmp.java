@@ -41,6 +41,15 @@ public class TypeEmp {
     }
     
     @Override
+    public boolean equals(Object other) {
+        TypeEmp typeEmp = (TypeEmp) other;
+        if(other == null || typeEmp.typeID != this.typeID) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
     public String toString() {
         return typeName;
     } 

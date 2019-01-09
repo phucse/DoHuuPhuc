@@ -41,6 +41,15 @@ public class Department {
     }    
     
     @Override
+    public boolean equals(Object other) {
+        Department department = (Department) other;
+        if(other == null || department.departmentID != this.departmentID) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
     public String toString() {
         return departmentName;
     } 

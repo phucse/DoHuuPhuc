@@ -41,6 +41,15 @@ public class Ethnic {
     }
     
     @Override
+    public boolean equals(Object other) {
+        Ethnic ethnic = (Ethnic) other;
+        if(other == null || ethnic.ethnicID != this.ethnicID) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
     public String toString() {
         return ethnicName;
     } 

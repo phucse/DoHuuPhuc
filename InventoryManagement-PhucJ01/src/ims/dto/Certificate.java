@@ -40,6 +40,15 @@ public class Certificate {
     }
     
     @Override
+    public boolean equals(Object other) {
+        Certificate certificate = (Certificate) other;
+        if(other == null || certificate.certificateID != this.certificateID) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
     public String toString() {
         return certificateName;
     } 

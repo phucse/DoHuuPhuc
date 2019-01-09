@@ -41,6 +41,15 @@ public class Religion {
     }
     
     @Override
+    public boolean equals(Object other) {
+        Religion religion = (Religion) other;
+        if(other == null || religion.religionID != this.religionID) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
     public String toString() {
         return religionName;
     } 

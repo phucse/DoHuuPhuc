@@ -41,6 +41,15 @@ public class Position {
     }
     
     @Override
+    public boolean equals(Object other) {
+        Position position = (Position) other;
+        if(other == null || position.positionID != this.positionID) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
     public String toString() {
         return positionName;
     } 

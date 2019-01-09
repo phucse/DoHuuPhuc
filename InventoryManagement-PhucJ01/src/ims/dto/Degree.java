@@ -41,6 +41,15 @@ public class Degree {
     }
     
     @Override
+    public boolean equals(Object other) {
+        Degree degree = (Degree) other;
+        if(other == null || degree.degreeID != this.degreeID) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
     public String toString() {
         return degreeName;
     } 

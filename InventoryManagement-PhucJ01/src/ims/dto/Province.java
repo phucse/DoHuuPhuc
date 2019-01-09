@@ -31,8 +31,8 @@ public class Province {
 
     @Override
     public boolean equals(Object other) {
-        Province pro = (Province) other;
-        if(other == null || pro.provinceID != this.provinceID) {
+        Province province = (Province) other;
+        if(other == null || province.provinceID != this.provinceID) {
             return false;
         }
         return true;

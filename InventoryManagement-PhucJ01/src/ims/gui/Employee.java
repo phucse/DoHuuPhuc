@@ -70,6 +70,7 @@ public class Employee extends javax.swing.JFrame {
         this();
         empDetail = new EmployeeBLL().detailEmployeeInfo(id);
         isDetail = true;
+        btNew.setVisible(false);
     }
 
     public void setInfoDialog() {
@@ -231,7 +232,10 @@ public class Employee extends javax.swing.JFrame {
 
     public void detailEmployee() throws SQLException, ClassNotFoundException {
         setComboBox();
-        province = new Province();
+        Province maNS = new Province();
+        Province maNCCM = new Province();
+        Province maDDLV = new Province();
+        Province maNCP = new Province();
         ethnic = new Ethnic();
         religion = new Religion();
         bank = new Bank();
@@ -243,37 +247,53 @@ public class Employee extends javax.swing.JFrame {
         department = new Department();
         title = new Title();
         position = new Position();
-        
-        province.setProvinceID(empDetail.getMaNoiSinh());
-        cbxNoiSinh.setSelectedItem(province);
 
-//        cbxMaNoiCapPass.setSelectedItem(empDetail.getMaNoiSinh());
-//        
-//        cbxNoiCapCM.setSelectedItem(empDetail.getMaNoiSinh());
-//        
-//        cbxDDLV.setSelectedItem(empDetail.getMaNoiSinh());
-//        
-//        cbxDanToc.setSelectedItem(empDetail.getMaNoiSinh());
-//        
-//        cbxTonGiao.getSelectedItem();
-//        
-//        cbxNganHang.getSelectedItem();
-//        
-//        cbxLoaiNV.getSelectedItem();
-//        
-//        cbxTrinhDo.getSelectedItem();
-//        cbxBangCap.getSelectedItem();
-//        
-//        cbxDonVi.getSelectedItem();
-//        
-//        cbxPhongBan.getSelectedItem();
-//        
-//        cbxBoPhan.getSelectedItem();
-//        
-//        cbxChucDanh.getSelectedItem();
-//        
-//        cbxChucVu.setSelectedItem(ABORT);
-        //Get Text
+        maNS.setProvinceID(empDetail.getMaNoiSinh());
+        cbxNoiSinh.setSelectedItem(maNS);
+
+        maNCP.setProvinceID(empDetail.getMaNoiCapPass());
+        cbxMaNoiCapPass.setSelectedItem(maNCP);
+
+        maNCCM.setProvinceID(empDetail.getMaNoiSinh());
+        cbxNoiCapCM.setSelectedItem(maNCCM);
+
+        maDDLV.setProvinceID(empDetail.getMaNoiSinh());
+        cbxDDLV.setSelectedItem(maDDLV);
+
+        ethnic.setEthnicID(empDetail.getMaDToc());
+        cbxDanToc.setSelectedItem(ethnic);
+
+        religion.setReligionID(empDetail.getMaTGiao());
+        cbxTonGiao.setSelectedItem(religion);
+
+        bank.setBankID(empDetail.getMaNH());
+        cbxNganHang.setSelectedItem(bank);
+
+        typeEmp.setTypeID(empDetail.getMaLNV());
+        cbxLoaiNV.setSelectedItem(typeEmp);
+
+        degree.setDegreeID(empDetail.getMaTDo());
+        cbxTrinhDo.setSelectedItem(degree);
+
+        certificate.setCertificateID(empDetail.getMaBC());
+        cbxBangCap.setSelectedItem(certificate);
+
+        unitWork.setUnitID(empDetail.getMaDvi());
+        cbxDonVi.setSelectedItem(unitWork);
+
+        room.setRoomID(empDetail.getMaPBan());
+        cbxPhongBan.setSelectedItem(room);
+
+        department.setDepartmentID(empDetail.getMaBphan());
+        cbxBoPhan.setSelectedItem(department);
+
+        title.setTitleID(empDetail.getMaCDanh());
+        cbxChucDanh.setSelectedItem(title);
+
+        position.setPositionID(empDetail.getMaCVu());
+        cbxChucVu.setSelectedItem(position);
+
+        //Set Text
         txtMaNV.setText(empDetail.getMaNV());
         txtSoThe.setText(empDetail.getSoThe());
         txtHoTen.setText(empDetail.getHoTen());
@@ -322,7 +342,6 @@ public class Employee extends javax.swing.JFrame {
             departmentList = cbll.readDepartment();
             titleList = cbll.readTitle();
             positionList = cbll.readPosition();
-
 
             DefaultComboBoxModel cbNS = new DefaultComboBoxModel(proList.toArray(new Province[0]));
             cbxNoiSinh.setModel(cbNS);

@@ -32,6 +32,15 @@ public class Bank {
     }    
     
     @Override
+    public boolean equals(Object other) {
+        Bank bank = (Bank) other;
+        if(other == null || bank.bankID != this.bankID) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
     public String toString() {
         return bankName;
     } 

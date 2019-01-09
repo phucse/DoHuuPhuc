@@ -235,6 +235,7 @@ public class EmployeeList extends javax.swing.JFrame {
             Logger.getLogger(EmployeeList.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        
     }//GEN-LAST:event_btnXemActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed

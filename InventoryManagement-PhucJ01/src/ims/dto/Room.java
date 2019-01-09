@@ -41,6 +41,15 @@ public class Room {
     }    
     
     @Override
+    public boolean equals(Object other) {
+        Room room = (Room) other;
+        if(other == null || room.roomID != this.roomID) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
     public String toString() {
         return roomName;
     } 
