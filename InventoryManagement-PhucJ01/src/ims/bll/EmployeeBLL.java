@@ -8,6 +8,7 @@ package ims.bll;
 import ims.dal.EmployeeDAL;
 import ims.dto.EmployeeInfo;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,4 +20,14 @@ public class EmployeeBLL {
     public void addEmployee(EmployeeInfo em) throws SQLException, ClassNotFoundException {
         eDal.addEmployee(em);
     }
+    
+    public ArrayList<EmployeeInfo>readEmployeeInfos() throws SQLException, ClassNotFoundException{
+        ArrayList<EmployeeInfo> employeeInfos = eDal.readEmployeeInfo();
+        return employeeInfos;
+    }
+    
+    public void deleteEmp(String id) throws ClassNotFoundException, SQLException{
+        eDal.deleteEmp(id);
+    }
+    
 }

@@ -1068,8 +1068,8 @@ public class Employee extends javax.swing.JFrame {
     private void btSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveActionPerformed
         stateButton(true);
         try {
-
             ebll.addEmployee(setEmployee());
+            dispose();
         } catch (SQLException ex) {
             Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

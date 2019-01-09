@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 08, 2019 lúc 02:01 PM
+-- Thời gian đã tạo: Th1 09, 2019 lúc 08:40 AM
 -- Phiên bản máy phục vụ: 10.1.37-MariaDB
 -- Phiên bản PHP: 7.2.12
 
@@ -38,6 +38,10 @@ CREATE TABLE IF NOT EXISTS `bangcap` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
+-- RELATIONSHIPS FOR TABLE `bangcap`:
+--
+
+--
 -- Đang đổ dữ liệu cho bảng `bangcap`
 --
 
@@ -60,6 +64,10 @@ CREATE TABLE IF NOT EXISTS `bophan` (
   `TenBP` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`MaBP`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `bophan`:
+--
 
 --
 -- Đang đổ dữ liệu cho bảng `bophan`
@@ -85,6 +93,10 @@ CREATE TABLE IF NOT EXISTS `chucdanh` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
+-- RELATIONSHIPS FOR TABLE `chucdanh`:
+--
+
+--
 -- Đang đổ dữ liệu cho bảng `chucdanh`
 --
 
@@ -106,6 +118,10 @@ CREATE TABLE IF NOT EXISTS `chucvu` (
   `TenCV` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`MaCV`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `chucvu`:
+--
 
 --
 -- Đang đổ dữ liệu cho bảng `chucvu`
@@ -135,6 +151,10 @@ CREATE TABLE IF NOT EXISTS `dantoc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
+-- RELATIONSHIPS FOR TABLE `dantoc`:
+--
+
+--
 -- Đang đổ dữ liệu cho bảng `dantoc`
 --
 
@@ -161,6 +181,10 @@ CREATE TABLE IF NOT EXISTS `donvi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
+-- RELATIONSHIPS FOR TABLE `donvi`:
+--
+
+--
 -- Đang đổ dữ liệu cho bảng `donvi`
 --
 
@@ -181,6 +205,10 @@ CREATE TABLE IF NOT EXISTS `loainv` (
   `TenLNV` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`MaLNV`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `loainv`:
+--
 
 --
 -- Đang đổ dữ liệu cho bảng `loainv`
@@ -204,6 +232,10 @@ CREATE TABLE IF NOT EXISTS `nganhang` (
   `TenNH` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`MaNH`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `nganhang`:
+--
 
 --
 -- Đang đổ dữ liệu cho bảng `nganhang`
@@ -273,7 +305,6 @@ CREATE TABLE IF NOT EXISTS `nhanvien` (
   `LuongKD` float NOT NULL,
   `Hinh` char(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`MaNV`),
-  UNIQUE KEY `MaPB` (`MaPB`),
   KEY `MaTG` (`MaTG`),
   KEY `MaDT` (`MaDT`),
   KEY `MaNoiCapPass` (`MaNoiCapPass`),
@@ -287,15 +318,51 @@ CREATE TABLE IF NOT EXISTS `nhanvien` (
   KEY `MaNoiLam` (`MaNoiLam`),
   KEY `MaNH` (`MaNH`),
   KEY `MaNoiSinh` (`MaNoiSinh`),
-  KEY `MaNoiCapCM` (`MaNoiCapCM`) USING BTREE
+  KEY `MaNoiCapCM` (`MaNoiCapCM`) USING BTREE,
+  KEY `MaPB` (`MaPB`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `nhanvien`:
+--   `MaNoiCapCM`
+--       `tinhthanh` -> `MaTT`
+--   `MaPB`
+--       `phongban` -> `MaPB`
+--   `MaCV`
+--       `chucvu` -> `MaCV`
+--   `MaCD`
+--       `chucdanh` -> `MaCD`
+--   `MaNH`
+--       `nganhang` -> `MaNH`
+--   `MaNoiSinh`
+--       `tinhthanh` -> `MaTT`
+--   `MaNoiCapPass`
+--       `tinhthanh` -> `MaTT`
+--   `MaNoiLam`
+--       `tinhthanh` -> `MaTT`
+--   `MaTG`
+--       `tongiao` -> `MaTG`
+--   `MaDT`
+--       `dantoc` -> `MaDT`
+--   `MaLNV`
+--       `loainv` -> `MaLNV`
+--   `MaTD`
+--       `trinhdo` -> `MaTD`
+--   `MaBP`
+--       `bophan` -> `MaBP`
+--   `MaBC`
+--       `bangcap` -> `MaBC`
+--   `MaDV`
+--       `donvi` -> `MaDV`
+--
 
 --
 -- Đang đổ dữ liệu cho bảng `nhanvien`
 --
 
 INSERT INTO `nhanvien` (`MaNV`, `SoThe`, `TenNV`, `Phai`, `NamSinh`, `MaNoiSinh`, `CMND`, `NgayCapCM`, `MaNoiCapCM`, `DCThuongTru`, `DTThuongTru`, `DCTamTru`, `DTDD`, `Email`, `NgayVaoDoan`, `NgayVaoDang`, `MaDT`, `MaTG`, `QuocTich`, `Passport`, `NgayCapPass`, `MaNoiCapPass`, `HonNhan`, `MaSoThue`, `NgayCapMST`, `SoTK`, `MaTK`, `MaNH`, `MaTD`, `MaBC`, `HocHam`, `ChuyenMon`, `KNLVNam`, `KNLVThang`, `MaLNV`, `NgayVao`, `NgayHet`, `NgayChinhThuc`, `MaDV`, `MaPB`, `MaBP`, `MaCD`, `MaCV`, `MaNoiLam`, `LuongTV`, `LuongCB`, `LuongKD`, `Hinh`) VALUES
-('A01', '3298', 'AGENT', 'Nam', 1997, 1, '03428974', '1997-07-17', 1, '', 0, '', 0, '', '1997-07-17', '1997-07-17', 1, 1, 'Vi?t Nam', 0, '1997-07-17', 1, '??c thân', 0, '1997-07-17', 0, '', 1, 1, 1, '', '', 0, 0, 1, '1997-07-17', '1997-07-17', '1997-07-17', 1, 1, 1, 1, 1, 1, 0, 0, 0, '');
+('A01', '3298', 'AGENT', 'Nam', 1997, 1, '03428974', '1997-07-17', 1, '', 0, '', 0, '', '1997-07-17', '1997-07-17', 1, 1, 'Vi?t Nam', 0, '1997-07-17', 1, '??c thân', 0, '1997-07-17', 0, '', 1, 1, 1, '', '', 0, 0, 1, '1997-07-17', '1997-07-17', '1997-07-17', 1, 1, 1, 1, 1, 1, 0, 0, 0, ''),
+('A013', '3298', 'AGENT', 'Nam', 1997, 3, '03428974', '1997-07-17', 1, '', 0, '', 0, '', '1997-07-17', '1997-07-17', 1, 1, 'Vi?t Nam', 0, '1997-07-17', 1, '??c thân', 0, '1997-07-17', 0, '', 1, 1, 1, '', '', 0, 0, 1, '1997-07-17', '1997-07-17', '1997-07-17', 1, 1, 1, 1, 1, 1, 0, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -309,6 +376,10 @@ CREATE TABLE IF NOT EXISTS `phongban` (
   `TenPB` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`MaPB`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `phongban`:
+--
 
 --
 -- Đang đổ dữ liệu cho bảng `phongban`
@@ -336,6 +407,10 @@ CREATE TABLE IF NOT EXISTS `tinhthanh` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
+-- RELATIONSHIPS FOR TABLE `tinhthanh`:
+--
+
+--
 -- Đang đổ dữ liệu cho bảng `tinhthanh`
 --
 
@@ -359,6 +434,10 @@ CREATE TABLE IF NOT EXISTS `tongiao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
+-- RELATIONSHIPS FOR TABLE `tongiao`:
+--
+
+--
 -- Đang đổ dữ liệu cho bảng `tongiao`
 --
 
@@ -380,6 +459,10 @@ CREATE TABLE IF NOT EXISTS `trinhdo` (
   `TenTD` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`MaTD`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `trinhdo`:
+--
 
 --
 -- Đang đổ dữ liệu cho bảng `trinhdo`
